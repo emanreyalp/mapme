@@ -34,6 +34,7 @@ jobs:
         with:
           repository: ${{ vars.EXTERNAL_REPO || 'emanreyalp/mapme' }}
           token: ${{ secrets.EXTERNAL_REPO_TOKEN || github.token }}
+          ref: master
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
