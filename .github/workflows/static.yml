@@ -36,6 +36,12 @@ jobs:
           token: ${{ secrets.EXTERNAL_REPO_TOKEN || github.token }}
           ref: ${{ vars.EXTERNAL_REPO_BRANCH || 'main' }}
 
+      - name: Install staticrypt
+        run: sudo npm install -g staticrypt
+
+      - name: Generate encrypted HTML
+        run: staticrypt index.html ${{ vars.STATICRYPT_PASSWORD }} --output index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
