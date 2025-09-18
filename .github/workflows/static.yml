@@ -40,7 +40,20 @@ jobs:
         run: sudo npm install -g staticrypt
 
       - name: Generate encrypted HTML
-        run: staticrypt index.html -p '${{ vars.STATICRYPT_PASSWORD }}' --output index.html
+        run: staticrypt index.html -p '${{ vars.STATICRYPT_PASSWORD }}' -d '.'
+
+      - name: Check if the file encrypted
+        run: |
+          file="index.html"
+
+          # Get the second line of the file
+          second_line=$(sed -n '2p' "$file")
+
+          # Check if the second line contains 'staticrypt-html'
+          if [[ "$second_line" != *"staticrypt-html"* ]]; then
+            echo "Error: The file is not encrypted."
+            exit 1
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
