@@ -40,7 +40,7 @@ jobs:
         run: sudo npm install -g staticrypt
 
       - name: Generate encrypted HTML
-        run: staticrypt index.html ${{ vars.STATICRYPT_PASSWORD }} --output index.html
+        run: staticrypt index.html -p '${{ vars.STATICRYPT_PASSWORD }}' --output index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
