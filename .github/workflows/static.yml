@@ -40,7 +40,7 @@ jobs:
         run: sudo npm install -g staticrypt
 
       - name: Generate encrypted HTML
-        run: staticrypt index.html -p '${{ vars.STATICRYPT_PASSWORD }}' -d '.'
+        run: staticrypt index.html -p '${{ secrets.STATICRYPT_PASSWORD }}' -d '.'
 
       - name: Check if the file encrypted
         run: |
